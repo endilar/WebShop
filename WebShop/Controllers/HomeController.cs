@@ -74,6 +74,7 @@ namespace WebShop.Controllers
             }
             shoppingCartList.Add(new ShoppingCart { ProductId = id, SqFt=detailsVM.Product.TempSqFt });
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Item add to cart successfully";
             return RedirectToAction(nameof(Index));
         }
 
@@ -93,6 +94,7 @@ namespace WebShop.Controllers
             }
              
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Item add to cart successfully";
             return RedirectToAction(nameof(Index));
         }
 
