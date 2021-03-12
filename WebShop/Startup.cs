@@ -15,6 +15,7 @@ using WebShop_DataAccess.Data;
 using WebShop_DataAccess.Repository;
 using WebShop_DataAccess.Repository.IRepository;
 using WebShop_Utility;
+using WebShop_Utility.BrainTree;
 
 namespace WebShop
 {
@@ -47,12 +48,16 @@ namespace WebShop
                 Options.Cookie.IsEssential = true;
 
             });
+            services.Configure<BrainTreeSettings>(Configuration.GetSection("BrainTree"));
+            services.AddSingleton<IBrainTreeGate, BrainTreeGate>();
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IInquiryHeaderRepository, InquiryHeaderRepository>();
             services.AddScoped<IInquiryDetailRepository, InquiryDetailRepository>();
+            services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
+            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddControllersWithViews();
         }

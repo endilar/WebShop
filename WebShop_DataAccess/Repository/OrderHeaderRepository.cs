@@ -9,16 +9,16 @@ using WebShop_Models;
 
 namespace WebShop_DataAccess.Repository
 {
-    public class InquiryHeaderRepository : Repository<InquiryHeader>, IInquiryHeaderRepository
+    public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderRepository
     {
         private readonly ApplicationDbContext _db;
-        public InquiryHeaderRepository(ApplicationDbContext db) : base(db)
+        public OrderHeaderRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(InquiryHeader obj)
+        public void Update(OrderHeader obj)
         {
-            _db.InquiryHeader.Update(obj);
+            _db.OrderHeader.Update(obj);
         }
     }
 }
