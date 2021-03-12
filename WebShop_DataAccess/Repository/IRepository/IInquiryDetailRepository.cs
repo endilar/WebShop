@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Webshop_Models;
+using WebShop_Models;
 
 namespace WebShop_DataAccess.Repository.IRepository
 {

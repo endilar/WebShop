@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebShop_Models;
 
-namespace Webshop_Models
+namespace WebShop_Models
 {
     public class InquiryHeader
     {

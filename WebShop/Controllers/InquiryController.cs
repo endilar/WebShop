@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShop_DataAccess.Repository.IRepository;
-using Webshop_Models;
-using Webshop_Models.ViewModels;
+using WebShop_Models.ViewModels;
 using WebShop_Models;
 using WebShop_Utility;
 

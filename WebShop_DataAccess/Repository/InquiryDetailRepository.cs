@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using WebShop_DataAccess.Data;
 using WebShop_DataAccess.Repository.IRepository;
-using Webshop_Models;
 using WebShop_Models;
 
 namespace WebShop_DataAccess.Repository

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Webshop_Models.ViewModels
+namespace WebShop_Models.ViewModels
 {
     public class InquiryVM
     {
