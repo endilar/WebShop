@@ -296,7 +296,7 @@ namespace WebShop_DataAccess.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("Webshop_Models.InquiryDetail", b =>
+            modelBuilder.Entity("WebShop_Models.InquiryDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -318,7 +318,7 @@ namespace WebShop_DataAccess.Migrations
                     b.ToTable("InquiryDetail");
                 });
 
-            modelBuilder.Entity("Webshop_Models.InquiryHeader", b =>
+            modelBuilder.Entity("WebShop_Models.InquiryHeader", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -430,9 +430,9 @@ namespace WebShop_DataAccess.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Webshop_Models.InquiryDetail", b =>
+            modelBuilder.Entity("WebShop_Models.InquiryDetail", b =>
                 {
-                    b.HasOne("Webshop_Models.InquiryHeader", "InquiryHeader")
+                    b.HasOne("WebShop_Models.InquiryHeader", "InquiryHeader")
                         .WithMany()
                         .HasForeignKey("InquiryHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -449,7 +449,7 @@ namespace WebShop_DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Webshop_Models.InquiryHeader", b =>
+            modelBuilder.Entity("WebShop_Models.InquiryHeader", b =>
                 {
                     b.HasOne("WebShop_Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
