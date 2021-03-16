@@ -59,6 +59,13 @@ namespace WebShop
             services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+
+            services.AddAuthentication().AddFacebook(Options =>
+            {
+                Options.AppId = "721625285151626";
+                Options.AppSecret = "a28f87f16383c2400caaa5a8a63b4a26";
+            });
+
             services.AddControllersWithViews();
         }
 
