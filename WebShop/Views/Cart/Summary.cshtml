@@ -36,7 +36,7 @@
                                         <label>Phone</label>
                                     </div>
                                     <div class="col-9">
-                                        <input asp-for="ApplicationUser.PhoneNumber" required type="text" class="form-control" />
+                                        <input asp-for="ApplicationUser.PhoneNumber"  type="text" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -44,7 +44,7 @@
                                         <label>Email</label>
                                     </div>
                                     <div class="col-9">
-                                        <input asp-for="ApplicationUser.Email" required type="text" class="form-control" />
+                                        <input asp-for="ApplicationUser.Email"  type="text" class="form-control" />
                                     </div>
                                 </div>
                                 @if (User.IsInRole(WebShop_Utility.WC.AdminRole))
