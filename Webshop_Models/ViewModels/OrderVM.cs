@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebShop_Models.ViewModels
 {
-    public class OrderVM
+    public class InquiryVM
     {
-        public OrderHeader OrderHeader { get; set; }
-        public IEnumerable<OrderDetail> OrderDetail { get; set; }
+        public InquiryHeader InquiryHeader { get; set; }
+        public IEnumerable<InquiryDetail> InquiryDetail { get; set; }
     }
 }

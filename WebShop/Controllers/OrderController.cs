@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebShop_DataAccess.Repository.IRepository;
+using WebShop_Models;
 using WebShop_Models.ViewModels;
 using WebShop_Utility;
 using WebShop_Utility.BrainTree;
@@ -70,6 +71,80 @@ namespace WebShop.Controllers
             };
             return View(OrderVM);
         }
+
+
+        [HttpPost]
+
+        public IActionResult StartProcessing()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusInProcess;
+            _orderHRepo.Save();
+            TempData[WC.Success] = "Order is in Process";
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [HttpPost]
+
+        public IActionResult ShipOrder()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = WC.StatusShipped;
+            orderHeader.ShippingDate = DateTime.Now;
+            _orderHRepo.Save();
+            TempData[WC.Success] = "Order Shipped Successfuly";
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [HttpPost]
+
+        public IActionResult CancelOrder()
+        {
+            OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+
+
+            var gateway = _brain.GetGateway();
+            Transaction transaction = gateway.Transaction.Find(orderHeader.TransactionId);
+
+            if (transaction.Status == TransactionStatus.AUTHORIZED || transaction.Status == TransactionStatus.SUBMITTED_FOR_SETTLEMENT)
+            {
+                Result<Transaction> resultvoid = gateway.Transaction.Void(orderHeader.TransactionId);
+            }
+            else
+            {
+                Result<Transaction> resultRefund = gateway.Transaction.Refund(orderHeader.TransactionId);
+            }
+            orderHeader.OrderStatus = WC.StatusRefunded;
+            _orderHRepo.Save();
+            TempData[WC.Success] = "Order  Cancelled Successfuly";
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        public IActionResult UpdateOrderDetails()
+        {
+
+            OrderHeader orderHeaderFromDb = _orderHRepo.FirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id);
+            orderHeaderFromDb.FullName = OrderVM.OrderHeader.FullName;
+            orderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
+            orderHeaderFromDb.StreetAddress = OrderVM.OrderHeader.StreetAddress;
+            orderHeaderFromDb.City = OrderVM.OrderHeader.City;
+            orderHeaderFromDb.State = OrderVM.OrderHeader.State;
+            orderHeaderFromDb.PostalCode = OrderVM.OrderHeader.PostalCode;
+            orderHeaderFromDb.Email = OrderVM.OrderHeader.Email;
+
+
+
+            _orderHRepo.Save();
+            TempData[WC.Success] = "Order Details Updated Successfuly";
+            return RedirectToAction("Details", "Order", new { id = orderHeaderFromDb.Id });
+        }
+
+
 
     }
 

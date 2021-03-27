@@ -11,8 +11,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.4.0.47" />
-    <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core.Windows" Version="18.4.0.47" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.4.0.48" />
+    <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core.Windows" Version="18.4.0.48" />
     <PackageReference Include="toastr" Version="2.1.1" />
   </ItemGroup>
 
