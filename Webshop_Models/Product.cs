@@ -36,7 +36,7 @@ namespace WebShop_Models
         public virtual ApplicationType ApplicationType { get; set; }
 
         [NotMapped]
-        [Range(1,1000)]
+        [Range(1,1000,ErrorMessage ="Sqft must be greater then 0")]
 
         public int TempSqFt { get; set; }
     }
