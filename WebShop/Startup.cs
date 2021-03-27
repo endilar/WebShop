@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShop_DataAccess.Data;
+using WebShop_DataAccess.Initializer;
 using WebShop_DataAccess.Repository;
 using WebShop_DataAccess.Repository.IRepository;
 using WebShop_Utility;
@@ -59,7 +60,7 @@ namespace WebShop
             services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
-
+            services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddAuthentication().AddFacebook(Options =>
             {
                 Options.AppId = "721625285151626";
@@ -70,7 +71,7 @@ namespace WebShop
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -88,7 +89,7 @@ namespace WebShop
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            dbInitializer.Initialize();
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
